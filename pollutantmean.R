@@ -22,6 +22,24 @@ pollutantmean <- function(directory, pollutant, id) {
 	filename <- paste(directory,sprintf("%03d",id),'.csv',sep='')
 	print(filename)
 	data <- read.table(filename, sep = ",")
+	if (pollutant == "sulfate") {
+		print(data[,2])
+		data2 <- data[(!is.na(data[,2])),2]
+		data2 <- data.matrix(data2)
+		data2 <- data2[2:lenght(data2)]
+		print(data2)
+	} else if(pollutant == "nitrate"){
+		#print(data[,3])
+		data2 <- data[(!is.na(data[,3])),3]
+		print(data2)
+	} else {
+		print("Selection didn't work")
+		break
+	}
+	#print(class(data2))
+	#print(data2[2:118])
+	#pol_mean <- mean(data2[2:118])
+	#print(pol_mean)
 }
 
 pollutantmean(directory,pollutant,id)
